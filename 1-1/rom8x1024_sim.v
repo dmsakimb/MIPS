@@ -53,3 +53,4 @@ module rom8x1024_sim (rom_addr, rom_data);
 
   assign rom_data = data;
 endmodule
+//gittest
