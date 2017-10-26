@@ -289,7 +289,7 @@ module main_ctrl (instruction,
 //
 // 追加設計 1 のヒント(11)：I 形式の命令 sw の追加、RAM への制御信号の記述
 //
-  assign  ram_write_enable = (op_code == `SW) ? 1'b1 : 1'b0;
+  assign  ram_write_enable = (op_code == `SW)  ? 1'b1 : 1'b0;
 //
 //
 //
@@ -375,7 +375,7 @@ module main_ctrl (instruction,
 //
 // 更に、追加設計 4 のヒント(2)：J 形式の命令 JAL (jump and link) の追加、jp_sel モジュールへの制御信号の記述
 //
-  assign  jp = ((op_code == `J) || ((op_code == `JAL) && 0)) ? 1'b1 : 1'b0;
+  assign  jp = ((op_code == `J)  || ((op_code == `JAL) && 0)) ? 1'b1 : 1'b0;
 //
 //
 //
@@ -432,7 +432,7 @@ module main_ctrl (instruction,
 //
 // 追加設計 1 のヒント(3)：I 形式の命令 addiu の追加、ALU の入力ポート B へ流すデータを選択するセレクト信号の記述
 //
-      `ADDIU:  alu_b_sel1_s_tmp = 1'b1;
+      `ADDIU:  alu_b_sel1_s_tmp = 1'b0;
 //
 //
 //
@@ -478,14 +478,11 @@ module main_ctrl (instruction,
 //
 // 追加設計 1 のヒント(4)：I 形式の命令 addiu の追加、符号拡張を行う制御信号の記述
 //
-                        || ((op_code == `ADDIU) && 0)
+                        ||( (op_code == `ADDIU) && 0)
 //
 // 追加設計 1 のヒント(14)：I 形式の命令 sw の追加、符号拡張を行う制御信号の記述
 //
-                        || (op_code == `SW)
-
-//真 LW 
-                        || (op_code == `LW)
+                        || (op_code == `SW) 
 //
 //
 //
@@ -494,7 +491,7 @@ module main_ctrl (instruction,
 //
 // 追加設計 3 のヒント(12)：I 形式の命令 BNE の追加、符号拡張を行う制御信号の記述
 //
-                        || (op_code == `BNE)
+                        || (op_code == `BNE) 
 //
 //
 //
