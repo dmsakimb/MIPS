@@ -330,16 +330,16 @@ module cpu (clk, reset,
   //
   //論理シミュレーション用
   //DE2, quartus, 動作実験時コメントアウト
-  ram8x2048_sim  ram8x2048a(clk, ram_addr, ram_write_enable,
-                            ram_write_data, ram_read_data,
-                            key_ram_addr, key_ram_wdata, key_ram_wen);
+  //ram8x2048_sim  ram8x2048a(clk, ram_addr, ram_write_enable,
+  //                          ram_write_data, ram_read_data,
+  //                          key_ram_addr, key_ram_wdata, key_ram_wen);
   //
   //動作実験用
   //論理シミュレーション時コメントアウト
-  /*ram8x2048_DE2  ram8x2048a(clock_ram, ram_addr, ram_write_enable,
+  ram8x2048_DE2  ram8x2048a(clock_ram, ram_addr, ram_write_enable,
                             ram_write_data, ram_read_data,
                             key_ram_addr, key_ram_wdata, key_ram_wen);
-*/
+
 // 実験 9 のヒント（１）：ALU モジュールの実体化に関する記述の変更
 // 　　   clock, reset 信号の追加、乗算結果を保持するレジスタ hi と lo 用
   // alu
