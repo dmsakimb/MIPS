@@ -432,7 +432,7 @@ module main_ctrl (instruction,
 //
 // 追加設計 1 のヒント(3)：I 形式の命令 addiu の追加、ALU の入力ポート B へ流すデータを選択するセレクト信号の記述
 //
-      `ADDIU:  alu_b_sel1_s_tmp = 1'b0;
+      `ADDIU:  alu_b_sel1_s_tmp = 1'b1;
 //
 //
 //
