@@ -289,7 +289,7 @@ module main_ctrl (instruction,
 //
 // 追加設計 1 のヒント(11)：I 形式の命令 sw の追加、RAM への制御信号の記述
 //
-  assign  ram_write_enable = (op_code == `SW)  ? 1'b1 : 1'b0;
+  assign  ram_write_enable = (op_code == `SW) ? 1'b1 : 1'b0;
 //
 //
 //
@@ -352,7 +352,7 @@ module main_ctrl (instruction,
 //
 // 追加設計 3 のヒント(2)：I 形式の命令 SLTIU の追加、is_branch モジュールへの制御信号の記述
 //
-      `SLTIU:  is_branch_ctrl_tmp = 3'b101;
+      `SLTIU:  is_branch_ctrl_tmp = 3'b110;
 //
 //
 //
@@ -375,7 +375,7 @@ module main_ctrl (instruction,
 //
 // 更に、追加設計 4 のヒント(2)：J 形式の命令 JAL (jump and link) の追加、jp_sel モジュールへの制御信号の記述
 //
-  assign  jp = ((op_code == `J)  || ((op_code == `JAL) && 0)) ? 1'b1 : 1'b0;
+  assign  jp = ((op_code == `J) || ((op_code == `JAL) && 0)) ? 1'b1 : 1'b0;
 //
 //
 //
@@ -416,7 +416,7 @@ module main_ctrl (instruction,
 //
 // 追加設計 3 のヒント(16)：I 形式の命令 LW の追加、ALU の入力ポート B へ流すデータを選択するセレクト信号の記述
 //
-      `LW:     alu_b_sel1_s_tmp = 1'b0;
+      `LW:     alu_b_sel1_s_tmp = 1'b1;
 //
 //
 //
@@ -442,7 +442,7 @@ module main_ctrl (instruction,
 //
 // 追加設計 3 のヒント(11)：I 形式の命令 BNE の追加、ALU の入力ポート B へ流すデータを選択するセレクト信号の記述
 //
-      `BNE:    alu_b_sel1_s_tmp = 1'b1;
+      `BNE:    alu_b_sel1_s_tmp = 1'b0;
 //
 //
 //
@@ -478,11 +478,14 @@ module main_ctrl (instruction,
 //
 // 追加設計 1 のヒント(4)：I 形式の命令 addiu の追加、符号拡張を行う制御信号の記述
 //
-                        ||( (op_code == `ADDIU) && 0)
+                        || ((op_code == `ADDIU) && 0)
 //
 // 追加設計 1 のヒント(14)：I 形式の命令 sw の追加、符号拡張を行う制御信号の記述
 //
-                        || (op_code == `SW) 
+                        || (op_code == `SW)
+
+//真 LW 
+                        || (op_code == `LW)
 //
 //
 //
@@ -491,7 +494,7 @@ module main_ctrl (instruction,
 //
 // 追加設計 3 のヒント(12)：I 形式の命令 BNE の追加、符号拡張を行う制御信号の記述
 //
-                        || ((op_code == `BNE) && 0)
+                        || (op_code == `BNE)
 //
 //
 //
@@ -544,7 +547,7 @@ module main_ctrl (instruction,
 //
 // 追加設計 3 のヒント(4)：I 形式の命令 SLTIU の追加
 //
-      `SLTIU:  alu_op_tmp = 3'b110;
+      `SLTIU:  alu_op_tmp = 3'b111;
 //
 //
 //
@@ -695,7 +698,7 @@ module main_ctrl (instruction,
 //
 // 追加設計 3 のヒント(20)：I 形式の命令 LW の追加、レジスタファイルの write_idx の方へ流すデータを選択するセレクト信号の記述
 //
-      `LW:     reg_widx_sel1_s_tmp = 1'bX;
+      `LW:     reg_widx_sel1_s_tmp = 1'b0;
 //
 //
 //
@@ -744,7 +747,7 @@ module main_ctrl (instruction,
 //
 // 追加設計 3 のヒント(21)：I 形式の命令 LW の追加、レジスタファイルの write_idx へ流すデータを選択するセレクト信号の記述
 //
-      `LW:     link_tmp = 1'bX;
+      `LW:     link_tmp = 1'b0;
 //
 //
 //
