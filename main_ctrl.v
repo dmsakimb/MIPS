@@ -375,7 +375,7 @@ module main_ctrl (instruction,
 //
 // 更に、追加設計 4 のヒント(2)：J 形式の命令 JAL (jump and link) の追加、jp_sel モジュールへの制御信号の記述
 //
-  assign  jp = ((op_code == `J) || ((op_code == `JAL) && 0)) ? 1'b1 : 1'b0;
+  assign  jp = ((op_code == `J) || (op_code == `JAL) ) ? 1'b1 : 1'b0;
 //
 //
 //
@@ -394,7 +394,7 @@ module main_ctrl (instruction,
 //
 // 追加設計 5 のヒント(1)：R 形式の命令 JR の追加、JR の機能コードの記述
 //
-                  || Rfunc == 6'b001001)) ? 1'b1 : 1'b0;
+                  || Rfunc == 6'b001000)) ? 1'b1 : 1'b0;
 //
 //
 //
@@ -570,7 +570,7 @@ module main_ctrl (instruction,
 //
 // 追加設計 5 のヒント(2)：R 形式の命令 JR の追加、レジスタファイルへの制御信号の記述
 //
-              reg_write_enable_tmp = 1'b1;
+              reg_write_enable_tmp = 1'b0;
 //
 //
 //
@@ -624,7 +624,7 @@ module main_ctrl (instruction,
 //
 // 追加設計 4 のヒント(3)：J 形式の命令 JAL の追加、レジスタファイルへの制御信号の記述
 //
-      `JAL:    reg_write_enable_tmp = 1'b0;
+      `JAL:    reg_write_enable_tmp = 1'b1;
 //
 //
 //
@@ -773,7 +773,7 @@ module main_ctrl (instruction,
 //
 // 追加設計 4 のヒント(4)：J 形式の命令 JAL の追加、レジスタファイルの write_idx へ流すデータを選択するセレクト信号の記述
 //
-      `JAL:    link_tmp = 1'b0;
+      `JAL:    link_tmp = 1'b1;
 //
 //
 //
